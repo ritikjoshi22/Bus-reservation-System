@@ -1,0 +1,444 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <conio.h>
+
+char bn[10][130]={"Sai Baba Travels & Tours","Sauraha Holiday Travels","Sharada Travel & Tours","Swiss Travel & Tours","Swift Holidays Travel"};
+char name[32][100]={'\0'};
+char number[32][2]={'\0'};
+int num1[32]={0};
+int brn;
+const int tp=750;
+void clearScreen(){
+	system("cls");
+}
+void loading();
+void welcomepage();
+void login();
+void interface();
+void viewbuslist();
+void name_number(int booking, char numstr[100]);
+void bookticket();
+int read_number(int brn);
+void read_name(int brn);
+void bus_status();
+void bus_status1(int brn);
+void cancelticket();
+
+int main() {
+		clearScreen();
+		login();
+			return 0;
+}
+ 
+void loading(){
+	system("COLOR 0e");
+	clearScreen();
+	printf("\e[?251");
+	SetConsoleCP(437);
+	SetConsoleOutputCP(437);
+	int bar1=177,bar2=219,i;
+	printf("\n\n\n\t\t\t\taLoading . . . .");
+	printf("\n\n\n\t\t\t\t");
+	for(i=0;i<25;i++){
+		printf("%c",bar1);
+	}
+	printf("\r");
+	printf("\t\t\t\t");
+		for(i=0;i<25;i++){
+		printf("%c",bar2);
+		Sleep(150);
+	}
+	printf("\n\n\n\t\t\t\tTHANK YOU WAITING!");
+	printf("\n\n\n\n\n\t\t\t\t");
+	system("Pause");
+	getch();
+}
+void welcomepage(){
+	clearScreen();
+	int i,chwp;
+	printf("\e[0;37m");
+	printf("\n\n");
+	for(i=0;i<156;i++){
+		printf("*");
+	}
+	printf("\e[1;31m");
+	printf("\n\t\t\t\t\t\t     BUS \t    RESERVATION \t SYSTEM\t\t\t\t\t\n\n");
+	printf("\e[0;37m");
+	for(i=0;i<156;i++){
+		printf("*");
+	}
+    printf("\e[1;32m");
+    printf("\n");
+	printf("\t\t\t\t\t\t  **********        **********          *********  \n");
+	printf("\t\t\t\t\t\t  ***********       ***********        *********** \n");
+	printf("\t\t\t\t\t\t  ***      **       ***      **        ****        \n");
+	printf("\t\t\t\t\t\t  **********        **********         **********  \n");
+	printf("\t\t\t\t\t\t  **********        **********          ********** \n"); 
+	printf("\t\t\t\t\t\t  ***      **       ***     ***                 ***\n");
+	printf("\t\t\t\t\t\t  ***********       ***      ***        ********** \n");
+	printf("\t\t\t\t\t\t  **********        ***       ***     **********   \n");
+	printf("\n");
+		printf("\e[0;37m");
+		for(i=0;i<156;i++){
+		printf("*");
+	}
+	printf("\e[0;36m");
+	printf("\n");
+	printf("\t\t\t\t\t\t  Created by -> Team name | RITIK | SAKSHAM | SAMEER\n\n");
+		printf("\e[0;37m");
+		for(i=0;i<156;i++){
+		printf("*");
+	}
+	printf("\n\n\n");
+			printf("\e[0;37m");
+		for(i=0;i<156;i++){
+		printf("*");
+	}
+		printf("\e[0;36m");
+	        printf("\n\t\t\t\t\t\t\t    Enter [1] to Proceed\n");
+	        printf("\t\t\t\t\t\t\t    Enter [0] to Exit\n\n");
+			printf("\e[0;37m");
+			printf("\n");
+		for(i=0;i<156;i++){
+		printf("*");
+	}
+	ch:
+			printf("\e[0;36m");
+		printf("                                                            Enter your Choice: ");
+		scanf("%d",&chwp);
+	switch(chwp){
+		case 1:
+			loading();
+			interface();
+			break;
+		case 0:
+				printf("\e[0;37m");
+		    getch();	
+		    break;
+		default:
+			printf("\e[0;31m");
+			printf("                                                            Invalid choice! Try Again!\n");
+			goto ch;
+	}
+} 
+
+void interface(){
+	int choice;
+	while(1){
+	clearScreen();
+	printf("\n\n\n\t\t\t\t\t================== BUS RESERVATION SYSTEM ==================\n\n\n\n\n");
+	printf("\t\t\t\t\t[1] -> View Bus List\n\n");
+	printf("\t\t\t\t\t[2] -> Book Tickets\n\n");
+	printf("\t\t\t\t\t[3] -> Cancel Tickets\n\n");
+	printf("\t\t\t\t\t[4] -> Bus Status Board\n\n");
+	printf("\t\t\t\t\t[5] -> Exit\n\n\n\n\n\n");
+	ch:
+	printf("\t\t\t\t\tEnter your choice: ");
+	scanf("%d",&choice);
+	
+	switch(choice){
+		case 1:
+			viewbuslist();
+			getch();
+			break;
+		case 2:
+			bookticket();
+			getch();
+			break;
+		case 3:
+			cancelticket();
+			getch();
+			break;
+		case 4:
+			bus_status();
+			getch();
+			break;
+		case 5:
+			system("cls");
+			printf("Thank You for using our System!");
+			getch();
+			return;
+		default:
+		    printf("Invalid Choice! Try again!\n");
+			goto ch;			
+	}
+}
+}
+
+void viewbuslist(){
+	clearScreen();
+	printf("\n\n\n\t\t\t\t\t================== BUS RESERVATION SYSTEM ==================\n\n\n\n\n");
+	printf("\t\t\t\t\t[1] -> %s\n\n",bn[0]);
+	printf("\t\t\t\t\t[2] -> %s\n\n",bn[1]);
+	printf("\t\t\t\t\t[3] -> %s\n\n",bn[2]);
+	printf("\t\t\t\t\t[4] -> %s\n\n",bn[3]);
+	printf("\t\t\t\t\t[5] -> %s\n\n",bn[4]);
+}
+void bookticket(){
+    char numstr[100];
+	printf("\n\n\n\t\t\t\t\t================== BUS RESERVATION SYSTEM ==================\n\n\n\n\n");
+	viewbuslist();
+	printf("\n\n\n\n\n\t\t\t\t\tEnter your bus number: ");
+	scanf("%d",&brn);
+	FILE *fp;
+	char str1[80]="32";
+	int seat1,booking=0;
+	if(brn==1){
+			fp=fopen("bus1.txt","r+");
+			fgets(str1,80,fp);
+			fclose(fp);
+		}
+	else if(brn==2){
+			fp=fopen("bus2.txt","r+");
+				fgets(str1,80,fp);
+			fclose(fp);
+		}
+		else if(brn == 3){
+			fp=fopen("bus3.txt","r+");
+				fgets(str1,80,fp);
+			fclose(fp);
+		}
+		else if(brn==4){
+			fp=fopen("bus4.txt","r+");
+				fgets(str1,80,fp);
+			fclose(fp);
+		}
+		else if(brn==5){
+			fp=fopen("bus5.txt","r+");
+				fgets(str1,80,fp);
+			fclose(fp);
+	}			
+	seat1=atoi(str1);
+	if(seat1<=0){
+		printf("There is no blank seat in the bus");
+	}
+	else{
+		printf("\n\n\n\t\t\t\t\tAvailable number of seat= %d\n",seat1);
+		printf("\n\t\t\t\t\tNumber of Tickets: ");
+		scanf("%d",&booking);
+		printf("\n");
+		seat1=seat1-booking;
+		itoa(brn,numstr,10);
+		name_number(booking,numstr);
+		printf("\n\t\t\t\tThe cost of the tickets is: %d",tp*booking);
+		itoa(seat1,str1,10);
+			if(brn==1){
+			fp=fopen("bus1.txt","w");
+			fputs(str1,fp);
+			fclose(fp);
+		}
+	else if(brn==2){
+			fp=fopen("bus2.txt","w");
+				fputs(str1,fp);
+			fclose(fp);
+		}
+		else if(brn == 3){
+			fp=fopen("bus3.txt","w");
+				fputs(str1,fp);
+			fclose(fp);
+		}
+		else if(brn==4){
+			fp=fopen("bus4.txt","w");
+				fputs(str1,fp);
+			fclose(fp);
+		}
+		else if(brn==5){
+			fp=fopen("bus5.txt","w");
+				fputs(str1,fp);
+			fclose(fp);
+	}	
+	}
+	getch();
+}
+void name_number(int booking, char numstr[100]){
+		char tempstr[100],tempstr1[12]="status",tempstr2[12]="number";
+	int number,i;
+	FILE *fp1,*fp2;
+	strcat(numstr,".txt");
+	strcat(tempstr1,numstr);
+	strcat(tempstr2,numstr);
+	fp1=fopen(tempstr1,"a");
+	fp2=fopen(tempstr2,"a");
+	for(i=0;i<booking;i++){
+	bus_status1(brn);
+	printf("\n\n\n\n\n\t\t\t\tEnter the details for ticket no %d\n\n\n",i+1);
+	printf("\t\t\t\tEnter the seat number: ");
+	scanf("%d",&number);
+    printf("\n\t\t\t\tEnter the name of person: ");
+	scanf("%s",name[number-1]);
+	printf("\n\n\n");
+	itoa(number,tempstr,10);
+	fprintf(fp1,"%s ",name[number-1]);
+	fprintf(fp2,"%s ",tempstr);
+    }
+	fclose(fp1);
+	fclose(fp2);
+}
+
+int read_number(int brn){
+	char tempstr[100],tempstr2[12]="number";
+	FILE *fp1,*fp2;
+	char numstr[100];
+	int i=0,k,j=0;
+	itoa(brn,numstr,10);
+	strcat(numstr,".txt");
+	strcat(tempstr2,numstr);
+	fp1=fopen(tempstr2,"a+");
+	while(!feof(fp1)){
+		number[i][j]=fgetc(fp1);
+		if(number[i][j]==' '){
+			j=0;
+			i++;
+		}
+		else{
+			j++;
+		}
+	}
+	k=i;
+	for(i=0;i<k;i++){
+		num1[i]=atoi(number[i]);
+	}
+	fclose(fp1);
+	return k;
+}
+
+void read_name(int brn){
+		char tempstr1[12]="status";
+	FILE *fp2;
+	char numstr[100];
+	int i=0,j=0;
+	itoa(brn,numstr,10);
+	strcat(numstr,".txt");
+	strcat(tempstr1,numstr);
+	fp2=fopen(tempstr1,"a+");
+	while(!feof(fp2)){
+		name[i][j]=fgetc(fp2);
+		if(name[i][j]==' '){
+			j=0;
+			i++;
+		}
+		else{
+			j++;
+		}
+	}
+	name[i][j]='\0';
+	fclose(fp2);
+}
+
+void bus_status(){
+		clearScreen();
+	int i,j,index=0,brn;
+printf("\n\n\n\t\t\t\t\t================== BUS RESERVATION SYSTEM ==================\n\n\n\n\n\n");   
+viewbuslist(); 
+    printf("\n\n\n\n\n\t\t\t\t\tEnter your bus number: ");
+    scanf("%d",&brn);
+    j=read_number(brn);
+    read_name(brn);
+    clearScreen();
+    printf("\n\n\n\t\t\t\t\t================== BUS RESERVATION SYSTEM ==================\n\n\n\n\n\n");   
+   printf("\t\t\t\t\t   Bus Number: %d ************ %s\n\n\n",brn,bn[brn-1]);
+    char tempname[33][10]={"Empty ","Empty ","Empty ","Empty ","Empty ","Empty ","Empty ","Empty ","Empty ","Empty ","Empty ","Empty ","Empty ","Empty ","Empty ","Empty ","Empty ","Empty ","Empty ","Empty ","Empty ","Empty ","Empty ","Empty ","Empty ","Empty ","Empty ","Empty ","Empty ","Empty ","Empty ","Empty ","Empty "};
+    for(i=0;i<j;i++){
+    	strcpy(tempname[num1[i]],name[i]);
+	}
+	for(i=0;i<8;i++){
+		printf("\t\t\t\t\t");
+		for(j=0;j<4;j++){
+			printf("%d.%s\t",index+1,tempname[index+1]);
+			index++;
+		}
+		printf("\n");
+	}
+}
+
+void bus_status1(int brn){
+	clearScreen();
+	printf("\n\n\n\t\t\t\t\t================== BUS RESERVATION SYSTEM ==================\n\n\n\n\n\n");
+	printf("\t\t\t\t\t   Bus Number: %d ************ %s\n\n\n",brn,bn[brn-1]);
+	int i,j,index=0;
+    j=read_number(brn);
+    read_name(brn);
+   char tempname[33][10]={"Empty ","Empty ","Empty ","Empty ","Empty ","Empty ","Empty ","Empty ","Empty ","Empty ","Empty ","Empty ","Empty ","Empty ","Empty ","Empty ","Empty ","Empty ","Empty ","Empty ","Empty ","Empty ","Empty ","Empty ","Empty ","Empty ","Empty ","Empty ","Empty ","Empty ","Empty ","Empty ","Empty "};
+    for(i=0;i<j;i++){
+    	strcpy(tempname[num1[i]],name[i]);
+	}
+	for(i=0;i<8;i++){
+		printf("\t\t\t\t\t");
+		for(j=0;j<4;j++){
+			printf("%d.%s\t",index+1,tempname[index+1]);
+			index++;
+		}
+		printf("\n");
+	}
+}
+
+void cancelticket(){
+	clearScreen();
+	viewbuslist();
+	int seat_no,i,j;
+	char numstr[100],tempstr2[15]="number",tempstr1[15]="status";
+	printf("\n\n\n\n\n\t\t\t\t\tEnter bus number: ");
+	scanf("%d",&brn);
+	itoa(brn,numstr,10);
+	strcat(numstr,".txt");
+	strcat(tempstr1,numstr);
+	strcat(tempstr2,numstr);
+	read_number(brn);
+	read_name(brn);
+	bus_status1(brn);
+	printf("\n\n\n\n\n\t\t\t\t\tEnter your seat number: ");
+	scanf("%d",&seat_no);
+	FILE *fp1,*fp2;
+	fp1=fopen(tempstr1,"w+");
+	fp2=fopen(tempstr2,"w+");
+	for(i=0;i<32;i++){
+		if(num1[i]==seat_no){
+			for(j=0;j<32;j++){
+				if(num1[j] != seat_no && num1[j] != 0){
+					fprintf(fp2,"%d ",num1[j]);
+					fprintf(fp1,"%s",name[j]);
+				}
+				else if(num1[j] == seat_no && num1[j] != 0){
+					strcpy(name[j],"Empty ");
+				}
+			}
+		}
+    }
+	fclose(fp1);
+	fclose(fp2);
+	printf("\n\n");
+	printf("\t\t\t\t\tYour %d has been returned\t\t\t\n",tp);
+}
+
+void login(){
+	int i=0,a=0;
+	char user_name[30],pass[30],ch;
+	do{
+		  clearScreen();
+	      printf("\n\n\t\t\t\t\t\t\t=======LOGIN PAGE=======\n\n\n\n\n\n");
+	      printf("\t\t\t\t\tUsername: ");
+	      scanf("%s",user_name);
+	      printf("\n\t\t\t\t\tPassword: ");
+	      while((ch=_getch()) != 13){
+	      	pass[i]=ch;
+	      	i++;
+	      	printf("*");
+		  }
+		  pass[i]='\0';
+	      if(strcmp(user_name,"oxford")==0 && strcmp(pass,"bca123")==0){
+	      	printf("\n\n\n\n\n\t\t\t\t\t\tLogin successful!");
+	      	getch();
+	      	welcomepage();
+		  }
+		  else{
+		  	printf("\n\t\t\t\t\tLogin Failed! Try Again");
+		  	a++;
+		  	sleep(3);
+		  }
+	}while(a<=2);
+	if(a>2){
+		printf("\nYou have entered wrong username or password for four times!!!!");
+		return;
+	}	  
+}
